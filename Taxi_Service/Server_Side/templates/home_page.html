@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/css/home.css">
+  <title>Murad-Taxi</title>
+</head>
+<body>
+  <header>
+    <h1>Murad-Taxi</h1>
+    <nav>
+      <ul>
+        <li><a href="/logout">Logout</a></li>
+        <li><button id="openPopup">Add a taxi</button></li>
+      </ul>
+    </nav>
+  </header>
+  <div>
+     <input type="text" id="searchInput" placeholder="Enter keyword...">
+     <button id="searchBtn">Search</button>
+  </div>
+  <section>
+    <ul id="contents">
+    </ul>
+  </section>
+  <div class="spinner"></div>
+  <section id="section_for_buttons">
+    <button class="pag_btn" id="previous_btn"><</button>
+    <button class="pag_btn" id="next_btn">></button>
+  </section>
+  <div id="popupContainer">
+    <div id="popup">
+      <span class="close">&times;</span>
+      <h2>Enter Details</h2><br>
+      <label for="carModel">Car Model:</label><br>
+      <input type="text" id="carModel" name="carModel" required><br><br>
+      <label for="driverName">Driver's Name:</label><br>
+      <input type="text" id="driverName" name="driverName" required><br><br>
+      <label for="region">Region:</label><br>
+      <input type="text" id="region" name="region" required><br><br>
+      <label for="rating">Rating:</label><br>
+      <input type="text" id="rating" name="rating" required><br><br>
+      <button id="submit">Submit</button>
+    </div>
+  </div>
+  <script src="../static/js/home_page.js"></script>
+</body>
+</html>
