@@ -11,7 +11,7 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 def authenticate_user(username, password):
-    db = sqlite3.connect('../Database/credentials.db')
+    db = sqlite3.connect('/opt/render/project/src/Taxi_Service/Database/credentials.db')
     cursor = db.cursor()
     cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
     user = cursor.fetchone()
@@ -22,7 +22,7 @@ def authenticate_user(username, password):
         return False
 
 def get_car_db_connection():
-    conn = sqlite3.connect('../Database/car_data.db')
+    conn = sqlite3.connect('/opt/render/project/src/Taxi_Service/Database/car_data.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -54,7 +54,7 @@ def signup():
         password = request.form['password']
         password_hash = hash_password(password)
         if not authenticate_user(username, password):
-            connection = sqlite3.connect('../Database/credentials.db')
+            connection = sqlite3.connect('/opt/render/project/src/Taxi_Service/Database/credentials.db')
             cursor = connection.cursor()
             insert_user_query = '''
                 INSERT INTO users (username, password_hash) VALUES (?, ?);
@@ -105,7 +105,7 @@ def add_car_info():
     rating = data.get('rating')
     if not (car_model and driver_name and country_region and rating):
         return jsonify({'message': 'Missing Data!'})
-    conn = sqlite3.connect('../Database/car_data.db')
+    conn = sqlite3.connect('/opt/render/project/src/Taxi_Service/Database/car_data.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM car_info WHERE car_model=? AND driver_name=? AND country_region=?", (car_model, driver_name, country_region))
     existing_record = cursor.fetchone()
@@ -119,7 +119,7 @@ def add_car_info():
 
 @app.route('/delete_element/<int:id>', methods=['DELETE'])
 def delete_element(id):
-    conn = sqlite3.connect('../Database/car_data.db')
+    conn = sqlite3.connect('/opt/render/project/src/Taxi_Service/Database/car_data.db')
     cursor = conn.cursor()
     cursor.execute("DELETE FROM car_info WHERE id=?", (id,))
     conn.commit()
@@ -129,7 +129,7 @@ def delete_element(id):
 @app.route('/search', methods=['GET'])
 def search():
     keyword = request.args.get('keyword', '')
-    conn = sqlite3.connect('../Database/car_data.db')
+    conn = sqlite3.connect('/opt/render/project/src/Taxi_Service/Database/car_data.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM car_info WHERE car_model LIKE ? OR driver_name LIKE ? OR country_region LIKE ? OR rating LIKE ?", 
                ("%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%"))
