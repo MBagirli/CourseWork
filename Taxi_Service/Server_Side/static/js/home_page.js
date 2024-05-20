@@ -79,7 +79,7 @@ function getData(page, perPage) {
       </li>
      `;
     spinner.style.display = 'block';
-    fetch(`http://192.168.8.14:5000/cars?page=${page}&per_page=${perPage}`, {
+    fetch(`https://coursework-6sjx.onrender.com/cars?page=${page}&per_page=${perPage}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ function getData(page, perPage) {
 }
 
 function addCarInfo(data) {
-    fetch('http://192.168.8.14:5000/add_car_info', {
+    fetch('https://coursework-6sjx.onrender.com/add_car_info', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -146,7 +146,7 @@ function search() {
      `;
     spinner.style.display = 'block';
 
-    fetch(`http://192.168.8.14:5000/search?keyword=${keyword}&page=${searchState.pageNumber}&per_page=${searchState.perPage}`)
+    fetch(`https://coursework-6sjx.onrender.com/search?keyword=${keyword}&page=${searchState.pageNumber}&per_page=${searchState.perPage}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to search');
